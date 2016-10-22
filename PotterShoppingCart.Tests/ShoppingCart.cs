@@ -1,21 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PotterShoppingCart.Tests
 {
-    internal class ShoppingCart
+    public class ShoppingCart
     {
+        private List<BookData> _items;
         public ShoppingCart()
         {
+            this._items = new List<BookData>();
         }
 
         internal object orderFee()
         {
-            throw new NotImplementedException();
+            int sum = 0;
+            foreach (var item in _items)
+            {
+                sum = item.Quantity * item.Price;
+            }
+            return sum;
         }
 
         internal void Add(BookData bookData)
         {
-            throw new NotImplementedException();
+            this._items.Add(bookData);
         }
     }
 }

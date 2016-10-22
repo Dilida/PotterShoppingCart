@@ -9,7 +9,7 @@ namespace PotterShoppingCart.Tests
         [TestMethod]
         public void checkOut_EP1_was_100()
         {
-            var bookData = new BookData() { EP=1, Price=100 };
+            var bookData = new BookData() { EP=1, Price=100, Quantity = 1 };
             var shoppingCart = new ShoppingCart();
 
             shoppingCart.Add(bookData);
@@ -33,5 +33,6 @@ namespace PotterShoppingCart.Tests
 
         public int EP { get; set;}
         public int Price { get; set; }
+        public int Quantity { get;  set; }
     }
 }
