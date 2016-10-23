@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace PotterShoppingCart.Tests
 {
@@ -9,7 +10,9 @@ namespace PotterShoppingCart.Tests
         [TestMethod]
         public void checkOut_EP1_was_100()
         {
-            var bookData = new BookData() { EP=1, Price=100, Quantity = 1 };
+            var bookData = new BookData() {
+                EP =1, Price=100, Quantity = 1
+            };
             var shoppingCart = new ShoppingCart();
 
             shoppingCart.Add(bookData);
@@ -20,8 +23,27 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actual);
 
         }
+
+        [TestMethod]
+        public void checkOut_twoBook_was_95_discounted()
+        {
+            var booksData = new List<BookData>{
+                new BookData { EP =1, Price= 100, Quantity = 1},
+                new BookData { EP =2, Price =100, Quantity = 1}
+            };
+            var shoppingCart = new ShoppingCart();
+
+            shoppingCart.Add(booksData);
+            var expected = 190;
+            var actual = shoppingCart.orderFee();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+
+        }
     }
 }
+
 
 namespace PotterShoppingCart.Tests
 {
