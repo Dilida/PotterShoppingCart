@@ -15,10 +15,18 @@ namespace PotterShoppingCart.Tests
 
         internal object orderFee()
         {
-            int total = 0;           
-            total = _items.Sum(i => i.Quantity * i.Price);
+            int total = 0;
+            int minQuantity = _items.Min(i => i.Quantity);
+            total = _items.Sum(i => minQuantity * i.Price);
             var rate = getOrderDiscount();
-            total = Convert.ToInt32( total * rate);        
+            total = Convert.ToInt32(total * rate);
+            foreach (var item in _items)
+            {
+                if (item.Quantity > minQuantity)
+                {
+                    total += (item.Quantity - minQuantity) * item.Price;
+                }
+            }
             return total;
 
         }
