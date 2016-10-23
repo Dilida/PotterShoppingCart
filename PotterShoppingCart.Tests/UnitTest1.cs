@@ -28,13 +28,32 @@ namespace PotterShoppingCart.Tests
         public void checkOut_twoBook_was_95_discounted()
         {
             var booksData = new List<BookData>{
-                new BookData { EP =1, Price= 100, Quantity = 1},
+                new BookData { EP =1, Price =100, Quantity = 1},
                 new BookData { EP =2, Price =100, Quantity = 1}
             };
             var shoppingCart = new ShoppingCart();
 
             shoppingCart.Add(booksData);
             var expected = 190;
+            var actual = shoppingCart.orderFee();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void checkOut_threeBook_was_90_discounted()
+        {
+            var booksData = new List<BookData>{
+                new BookData { EP =1, Price =100, Quantity = 1},
+                new BookData { EP =2, Price =100, Quantity = 1},
+                new BookData { EP =3, Price =100, Quantity = 1}
+            };
+            var shoppingCart = new ShoppingCart();
+
+            shoppingCart.Add(booksData);
+            var expected = 270;
             var actual = shoppingCart.orderFee();
 
             //assert
