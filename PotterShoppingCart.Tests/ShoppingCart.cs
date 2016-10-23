@@ -23,13 +23,12 @@ namespace PotterShoppingCart.Tests
 
         private double getOrderDiscount()
         {
-            if (this._items.Count == 2)
+            switch (this._items.Count)
             {
-                return 0.95;
-            }
-            else
-            {
-                return 1;
+                case 2 : return 0.95;
+                case 3 : return 0.9;
+                default: return 1;
+                   
             }
         }
 
