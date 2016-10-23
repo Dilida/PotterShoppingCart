@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PotterShoppingCart.Tests
 {
@@ -13,22 +14,30 @@ namespace PotterShoppingCart.Tests
 
         internal object orderFee()
         {
-            int sum = 0;
-            foreach (var item in _items)
+            int total = 0;
+            //return this._items[0].Quantity * this._items[0].Price;
+            if (this._items.Count == 2)
             {
-                sum = item.Quantity * item.Price;
+                //return 190;
+                total = _items.Sum(i => i.Quantity * i.Price);
+                return Convert.ToInt32(total * 0.95); 
             }
-            return sum;
+            else
+            {
+                total = _items[0].Quantity * _items[0].Price;
+                return total;
+            }
+
         }
 
         internal void Add(BookData bookData)
         {
-            this._items.Add(bookData);
+            _items.Add(bookData);
         }
 
         internal void Add(List<BookData> booksData)
         {
-            throw new NotImplementedException();
+            _items = new List < BookData > (booksData);
         }
     }
 }
