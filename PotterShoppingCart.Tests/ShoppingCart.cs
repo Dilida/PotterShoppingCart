@@ -15,19 +15,22 @@ namespace PotterShoppingCart.Tests
         internal object orderFee()
         {
             int total = 0;
-            //return this._items[0].Quantity * this._items[0].Price;
+            total = _items.Sum(i => i.Quantity * i.Price);
+            var rate = getOrderDiscount();
+            return Convert.ToInt32( total * rate);
+
+        }
+
+        private double getOrderDiscount()
+        {
             if (this._items.Count == 2)
             {
-                //return 190;
-                total = _items.Sum(i => i.Quantity * i.Price);
-                return Convert.ToInt32(total * 0.95); 
+                return 0.95;
             }
             else
             {
-                total = _items[0].Quantity * _items[0].Price;
-                return total;
+                return 1;
             }
-
         }
 
         internal void Add(BookData bookData)
