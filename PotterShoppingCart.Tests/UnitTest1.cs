@@ -121,6 +121,26 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actual);
 
         }
+
+        [TestMethod]
+        public void checkOut_threeBooksDiscounted90_twoBooksDiscounted95()
+        {
+            var booksData = new List<BookData>{
+                new BookData { EP =1, Price =100, Quantity = 1},
+                new BookData { EP =2, Price =100, Quantity = 2},
+                new BookData { EP =3, Price =100, Quantity = 2}
+
+            };
+            var shoppingCart = new ShoppingCart();
+
+            shoppingCart.Add(booksData);
+            var expected = 460;
+            var actual = shoppingCart.orderFee();
+
+            //assert
+            Assert.AreEqual(expected, actual);
+
+        }
     }
 }
 
