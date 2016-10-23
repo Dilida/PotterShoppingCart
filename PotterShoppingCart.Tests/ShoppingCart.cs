@@ -13,12 +13,7 @@ namespace PotterShoppingCart.Tests
 
         internal object orderFee()
         {
-            int sum = 0;
-            foreach (var item in _items)
-            {
-                sum = item.Quantity * item.Price;
-            }
-            return sum;
+            return this._items[0].Price * this._items[0].Quantity;
         }
 
         internal void Add(BookData bookData)
