@@ -7,6 +7,7 @@ namespace PotterShoppingCart.Tests
     public class ShoppingCart
     {
         private List<BookData> _items;
+
         public ShoppingCart()
         {
             this._items = new List<BookData>();
@@ -14,17 +15,19 @@ namespace PotterShoppingCart.Tests
 
         internal object orderFee()
         {
-            int total = 0;
+            int total = 0;           
             total = _items.Sum(i => i.Quantity * i.Price);
             var rate = getOrderDiscount();
-            return Convert.ToInt32( total * rate);
+            total = Convert.ToInt32( total * rate);        
+            return total;
 
         }
 
         private double getOrderDiscount()
         {
-            switch (this._items.Count)
-            {
+            switch (_items.Count)
+            {              
+                //Convert.ToInt32(item.GetType().GetProperty(columValue).GetValue(item).ToString())
                 case 2 : return 0.95;
                 case 3 : return 0.9;
                 case 4 : return 0.8;
@@ -32,6 +35,7 @@ namespace PotterShoppingCart.Tests
                 default: return 1;
                    
             }
+            
         }
 
         internal void Add(BookData bookData)
